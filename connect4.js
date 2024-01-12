@@ -16,6 +16,7 @@ class Game{
     this.currPlayer = 1;
     this.makeBoard();
     this.makeHtmlBoard();
+    this.gameEnd = false;
   }
   
 
@@ -28,6 +29,7 @@ class Game{
 
   makeHtmlBoard() {
     const board = document.getElementById('board');
+    board.innerHTML = '';
   
     // make column tops (clickable area for adding a piece to that column)
     const top = document.createElement('tr');
@@ -98,6 +100,7 @@ class Game{
     // check for win
     console.log("This before calling checkForWin: ", this);
     if (this.checkForWin()) {
+      this.gameEnd = true;
       return this.endGame(`Player ${this.currPlayer} won!`);
     }
     
@@ -299,6 +302,9 @@ function checkForWin() {
 }
 */
 
-new Game(6,7);
+document.getElementById('begin-game').addEventListener('click',()=>{
+  new Game(6,7);
+});
+
 //makeBoard();
 //makeHtmlBoard();
